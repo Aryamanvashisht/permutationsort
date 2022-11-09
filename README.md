@@ -1,1 +1,4 @@
+
+#PERMUTATION SORT#
+
 The name of the project is permutation sort . It is one of the worst sorting algorithm ever created. This sorting technique has various names like Bogo sort, stupid sort, slow sort, shot gun or monkey sort. Basically, by using the logic of permutation sort I have implemented this in webpage using html5 , css3 , javascript and jquery. Mostly, I have used css3 for the design and Aesthetics. For animation I have used javascript and jquery. Since, by doing this project I become much more confident to create front-end design for any website by using various modern technologies out there in the market. I got lot of bugs and errors but eventually, I remove all that and implemented the knowledge in better way. I have used a lot of reference for this project that help me to improve the user interface and provides the user-friendly experience on this website. This website includes 3 webpagesHome, implementation and about page.
