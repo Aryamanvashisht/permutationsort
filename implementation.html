@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+         
+        .loader{
+            position: fixed;
+            z-index: 99;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .loader > img{
+            width: 100%;
+        }
+         
+        .loader.hidden{
+            animation: fadeOut 3.5s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeOut{
+             100%{
+                opacity: 0;
+                visibility: hidden;
+             }
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #2c3e50;
+            height: 100vh;
+            width: 100vw;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: static
+        }
+         
+
+        #btn {
+            margin-bottom: 0px;
+
+        }
+
+        h1 {
+            text-transform: uppercase;
+            margin-top: 50px;
+            width: 300px;
+            display: block;
+            position: relative;
+            color: white;
+            margin-left: 0px;
+            margin-right: 70px;
+            background: #34495e;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+            border-radius: 8px;
+            font-size: 30px;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+        }
+
+        h1:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        h3 {
+            width: 700px;
+            margin-top: 40px;
+            text-align: center;
+            margin-left: 260px;
+            text-transform: uppercase;
+            word-spacing: 6px;
+            color: white;
+        }
+
+        #note {
+            color: white;
+            margin-left: 410px;
+            text-transform: uppercase;
+        }
+
+        #txt {
+            font-size: 25px;
+            border-radius: 10px 10px 10px 10px;
+            margin-left: 400px;
+            margin-top: 10px;
+        }
+
+        #btn {
+            font-size: 25px;
+            text-transform: uppercase;
+            background-color: #34495e;
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px 10px 10px 10px;
+            cursor: pointer;
+
+        }
+
+        #btn:hover {
+            color: darkturquoise;
+        }
+
+        h4 {
+            color: white;
+            text-transform: uppercase;
+            margin-top: 60px;
+            margin-left: 90px;
+        }
+
+        ul {
+            /* border: 2px solid white; */
+            height: 100px;
+            margin-top: 10px;
+            position: sticky;
+            background-attachment: fixed;
+        }
+
+        #lst {
+            margin-left: 50px;
+            /* border: 2px solid white; */
+            position: sticky;
+            width: 1100px;
+        }
+
+        #another {
+            margin-top: -6px;
+            margin-left: 550px;
+            color: white;
+            text-align: center;
+            font-size: 22px;
+            text-transform: uppercase;
+            background-color: #34495e;
+            border: 2px solid white;
+            border-radius: 10px 10px 10px 10px;
+            cursor: pointer;
+
+        }
+
+        #another:hover {
+            color: darkturquoise;
+        }
+
+        #aftersort {
+            /* border: 2px solid white; */
+            /* margin-bottom: 150px; */
+            /* margin-left: 150px; */
+            /* clear: left; */
+            width: 1100px;
+            margin-left: 50px;
+            margin-top: -1px;
+        }
+
+        .empty {
+            margin-top: 1000px;
+            color: white;
+            position: fixed;
+            background-attachment: fixed;
+        }
+
+        #sorting {
+            margin-top: 20px;
+        }
+
+        #ca {
+            text-transform: uppercase;
+            /* margin-top: -50px; */
+            width: 300px;
+            height: 35px;
+            display: block;
+            position: relative;
+            color: white;
+            margin-left: 440px;
+            margin-right: 70px;
+            padding-left: 15px;
+            background: #34495e;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+            border-radius: 8px;
+            font-size: 26px;
+        }
+
+        #ca:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+        }
+
+        #ca:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        #timeh {
+            margin-top: 50px;
+        }
+
+        #timec {
+            color: white;
+            margin-left: 65px;
+            font-size: 20px;
+        }
+
+        #aux {
+            color: white;
+            font-size: 15px;
+            margin-left: 85px;
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+    </style>
+</head>
+
+<body>
+     <div class="loader hidden">
+        <img src="animated-unscreen.gif" alt="Loading...">
+     </div>
+
+    <center>
+        <h1>Implementation</h1>
+    </center>
+    <h3>Input elements as array format separated by space</h3>
+    <!-- <h5 id="note">Note&nbsp;:&nbsp;Input size should not be more than 8 elements</h5> -->
+    <input type="text" id="txt" maxlength="17">
+    <button type="submit" id="btn">click</button><br>
+    <h4><u>Array of elements&nbsp;:</u></h4>
+    <!-- <div id="para">
+
+    </div> -->
+    <ul id="lst">
+        &nbsp;
+    </ul>
+
+    <script>
+        $(document).ready(function () {
+
+            var items;
+            $("#btn").click(function () {
+                document.querySelector("#btn").disabled = true;
+                $("#btn").css({
+                    "cursor": "auto",
+                    "color": "grey"
+                })
+                var input = $("#txt").val();
+                items = input.split(" "); //items is an array of values input from the text box
+                // console.log(items);
+                for (var i = 0; i <= items.length - 1; i++) {
+
+                    if (input != "") {
+                        let divElement = document.createElement('div')
+
+                        // create text node
+                        let divElementText = document.createTextNode(items[i] + " ");
+
+                        // append text node to div
+                        divElement.appendChild(divElementText)
+
+                        // append div element to document
+
+                        // document.body.appendChild(divElement);
+                        document.getElementById("lst").appendChild(divElement);
+
+                        $('div').css({
+                            "border": "2px solid white",
+                            "width": "30px",
+                            "float": "left",
+                            "margin-top": "20px",
+                            "height": "20px",
+                            "fontSize": "20px",
+                            "textAlign": "center",
+                            "paddingTop": "20px",
+                            "paddingBottom": "20px",
+                            "background": "#34495e",
+                            "boxShadow": "0 2px 3px 0 rgba(0,0,0,.1)",
+                            "borderRadius": "8px",
+                            "color": "white",
+
+                        })
+
+                        $('div').hover(function () {
+                            $(this).css("color", "#D70040");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+                    }
+                }
+
+            })
+
+            //another button:
+
+            $('#another').click(function () {
+                
+                // $("#file").css("visibility","visible");
+                document.querySelector("#another").disabled = true;
+                $("#another").css({
+                    "color": "grey",
+                    "cursor": "auto"
+                })
+
+                function isSorted(a, n) {
+                    for (var i = 1; i < a.length; i++)
+                        if (a[i - 1] > a[i])
+                            return false;
+                    return true;
+                }
+
+                //swap function
+                function swap(arr, xp, yp) {
+                    var temp = arr[xp];
+                    arr[xp] = arr[yp];
+                    arr[yp] = temp;
+                }
+
+                // To generate permutation of the array
+                function shuffle(a, n) {
+                    var i, j = n;
+                    for (i = 0; i < n; i++) {
+                        var ind = Math.floor(Math.random() * n);
+                        swap(a, j - i - 1, ind);
+                    }
+                    return a;
+                }
+
+                // Sorts array a[0..n-1] using Bogo sort
+                function bogosort(a, n) {
+                    // if array is not sorted then shuffle
+                    // the array again
+                    while (!isSorted(a, n)){
+                        a = shuffle(a, n);
+                    }
+                    return a;
+                }
+
+                // prints the array
+                function printArray(arr, size) {
+                    var i;
+                    for (i = 0; i < size; i++) {
+                        //     document.write(arr[i] + " ");
+                        // document.write("\n");
+                        let divElement = document.createElement('div')
+
+                        // create text node
+                        let divElementText = document.createTextNode(arr[i] + " ");
+
+                        // append text node to div
+                        divElement.appendChild(divElementText)
+
+                        // append div element to document
+
+                        // document.body.appendChild(divElement);
+                        document.getElementById("aftersort").appendChild(divElement);
+
+                        $('div').css({
+                            "border": "2px solid white",
+                            "width": "30px",
+                            "float": "left",
+                            "margin-top": "20px",
+                            "height": "20px",
+                            "fontSize": "20px",
+                            "textAlign": "center",
+                            "paddingTop": "20px",
+                            "paddingBottom": "20px",
+                            "background": "#34495e",
+                            "boxShadow": "0 2px 3px 0 rgba(0,0,0,.1)",
+                            "borderRadius": "8px",
+                            "color": "white",
+
+                        })
+
+                        $('div').hover(function () {
+                            $(this).css("color", "#D70040");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+
+                    }
+                }
+
+                var n = items.length;
+                items = bogosort(items, n);
+                printArray(items, n);
+            })
+            //the end
+
+        })
+    </script>
+
+    <!-- <script>
+         function progressBar(event){
+                    $("#file").css("visibilty","initial");
+                }
+    </script> -->
+
+    <button id="another">SORT</button>
+    <h4 id="sorting"><u>After sorting of array&nbsp;:</u></h4>
+    <ul id="aftersort">
+
+    </ul>
+
+    <!-- <ul id="empty">
+         <p>Hello world</p>
+    </ul> -->
+    <h1 id="ca">complexity analysis</h1>
+    <h4 id="timeh"><u>Time &nbsp;complexity&nbsp;:</u></h4>
+    <ul id="timec">
+        <li>Worst Case : O(∞) (since this algorithm has no upper bound)</li>
+        <li>Average Case: O(n*n!)</li>
+        <li>Best Case : O(n)(when array given is already sorted)</li>
+    </ul>
+    <p id="aux"><b><u>Auxiliary &nbsp;Space:</u> O(1)</b></p>
+
+    <!-- <img src="C:\Users\Aryaman\Desktop36d81e8f020c2e3444180f2c18b8e363.gif" id="imj" style="display: none; height: 500px; width: 500px;"> -->
+    
+</body>
+
+</html>
