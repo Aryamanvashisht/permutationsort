@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-         
-        .loader{
+
+        .loader {
             position: fixed;
             z-index: 99;
-            top:0;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
@@ -22,20 +22,23 @@
             justify-content: center;
             align-items: center;
         }
-        .loader > img{
+
+        .loader>img {
             width: 100%;
         }
-         
-        .loader.hidden{
+
+        .loader.hidden {
             animation: fadeOut 3.5s;
             animation-fill-mode: forwards;
         }
-        @keyframes fadeOut{
-             100%{
+
+        @keyframes fadeOut {
+            100% {
                 opacity: 0;
                 visibility: hidden;
-             }
+            }
         }
+
         body {
             font-family: 'Open Sans', sans-serif;
             background: #2c3e50;
@@ -45,7 +48,7 @@
             overflow-x: hidden;
             position: static
         }
-         
+
 
         #btn {
             margin-bottom: 0px;
@@ -115,13 +118,13 @@
             color: white;
             border: 2px solid white;
             border-radius: 10px 10px 10px 10px;
-            cursor: pointer;
+            /* cursor: pointer; */
 
         }
 
-        #btn:hover {
-            color: darkturquoise;
-        }
+        /* #btn:hover {
+            /* color: darkturquoise; */
+         
 
         h4 {
             color: white;
@@ -155,19 +158,16 @@
             background-color: #34495e;
             border: 2px solid white;
             border-radius: 10px 10px 10px 10px;
-            cursor: pointer;
+            /* cursor: pointer; */
 
         }
 
-        #another:hover {
+        /* #another:hover {
             color: darkturquoise;
-        }
+        } */
 
         #aftersort {
-            /* border: 2px solid white; */
-            /* margin-bottom: 150px; */
-            /* margin-left: 150px; */
-            /* clear: left; */
+
             width: 1100px;
             margin-left: 50px;
             margin-top: -1px;
@@ -236,25 +236,81 @@
             text-transform: uppercase;
             margin-top: -5px;
         }
+
+    
+        @media screen and (max-width:800px){
+            h1 {
+                margin-left: 0px;
+                width: 350px;
+                font-size: 50px;
+            }
+
+            h3 {
+                width: 290px;
+                margin-left: -50px;
+                
+            }
+
+            .arar {
+               
+                margin-left: -270px;
+            }
+
+            #txt {
+                width: 200px;
+                margin-left: -4px;
+            }
+
+            #btn {
+                font-size: 20px;
+            }
+
+            h4 {
+                margin-left: 30px;
+            }
+
+            #another {
+                margin-left: 90px;
+            }
+
+            #ca {
+                font-size: 20px;
+                width: 250px;
+                margin-left: 10px;
+            }
+
+            #timeh {
+                margin-left: 20px;
+            }
+
+            #timec {
+                margin-left: 5px;
+                width: 255px;
+            }
+
+            #aux {
+                margin-top: 120px;
+                margin-left: 20px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
-     <div class="loader hidden">
+    <div class="loader hidden">
         <img src="animated-unscreen.gif" alt="Loading...">
-     </div>
+    </div>
 
     <center>
         <h1>Implementation</h1>
     </center>
+    <!-- <div class="arar"> -->
     <h3>Input elements as array format separated by space</h3>
-    <!-- <h5 id="note">Note&nbsp;:&nbsp;Input size should not be more than 8 elements</h5> -->
+    <!-- </div> -->
     <input type="text" id="txt" maxlength="17">
-    <button type="submit" id="btn">click</button><br>
+    <button type="submit" id="btn" disabled="disabled">push</button><br>
     <h4><u>Array of elements&nbsp;:</u></h4>
-    <!-- <div id="para">
-
-    </div> -->
     <ul id="lst">
         &nbsp;
     </ul>
@@ -262,23 +318,59 @@
     <script>
         $(document).ready(function () {
 
-            var items;
+            var items_arr;
+            var input;
+            $("#txt").keyup(function () {
+                var btnSubmit = $("#btn");
+                var btnSort = $("#another");
+                if ($(this).val().trim() != "") {
+                    btnSubmit.removeAttr("disabled");
+                    btnSort.removeAttr("disabled");
+                    btnSubmit.css({
+                        "cursor":"pointer"  
+                    })
+                    btnSort.css("cursor","pointer");
+
+                    btnSubmit.hover(function () {
+                            $(this).css("color", "darkturquoise");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+                    btnSort.hover(function () {
+                            $(this).css("color", "darkturquoise");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+
+                }
+                else {
+                    btnSubmit.attr("disabled", "disabled");
+                    
+                }
+            })
+
             $("#btn").click(function () {
-                document.querySelector("#btn").disabled = true;
-                $("#btn").css({
-                    "cursor": "auto",
-                    "color": "grey"
-                })
-                var input = $("#txt").val();
-                items = input.split(" "); //items is an array of values input from the text box
-                // console.log(items);
-                for (var i = 0; i <= items.length - 1; i++) {
+                // document.querySelector("#btn").disabled = true;
+                // $("#btn").css({
+                //     "cursor": "auto",
+                //     "color": "grey"
+                // })
+
+                input = $("#txt").val();
+
+                if (input == "") {
+                    alert("Enter value first:");
+                }
+
+                items_arr = input.split(" "); //items is an array of values input from the text box
+
+                for (var i = 0; i <= items_arr.length - 1; i++) {
 
                     if (input != "") {
                         let divElement = document.createElement('div')
 
                         // create text node
-                        let divElementText = document.createTextNode(items[i] + " ");
+                        let divElementText = document.createTextNode(items_arr[i] + " ");
 
                         // append text node to div
                         divElement.appendChild(divElementText)
@@ -310,21 +402,35 @@
                         }, function () {
                             $(this).css("color", "white");
                         })
-                    }
-                }
+                    } // end of if check input != ""
+
+                    document.querySelector("#btn").disabled = true;
+                    $("#btn").css({
+                        "cursor": "auto",
+                        "color": "grey"
+                    })
+
+                }// end of for loop
+                // document.querySelector("#btn").disabled = true;
+                // $("#btn").css({
+                //     "cursor": "auto",
+                //     "color": "grey"
+                // })
 
             })
 
             //another button:
 
             $('#another').click(function () {
-                
-                // $("#file").css("visibility","visible");
+
+
+
                 document.querySelector("#another").disabled = true;
                 $("#another").css({
                     "color": "grey",
                     "cursor": "auto"
                 })
+
 
                 function isSorted(a, n) {
                     for (var i = 1; i < a.length; i++)
@@ -354,7 +460,7 @@
                 function bogosort(a, n) {
                     // if array is not sorted then shuffle
                     // the array again
-                    while (!isSorted(a, n)){
+                    while (!isSorted(a, n)) {
                         a = shuffle(a, n);
                     }
                     return a;
@@ -405,9 +511,9 @@
                     }
                 }
 
-                var n = items.length;
-                items = bogosort(items, n);
-                printArray(items, n);
+                var n = items_arr.length;
+                items_arr = bogosort(items_arr, n);
+                printArray(items_arr, n);
             })
             //the end
 
@@ -420,15 +526,13 @@
                 }
     </script> -->
 
-    <button id="another">SORT</button>
+    <button id="another" disabled="disabled">SORT</button>
     <h4 id="sorting"><u>After sorting of array&nbsp;:</u></h4>
     <ul id="aftersort">
 
     </ul>
 
-    <!-- <ul id="empty">
-         <p>Hello world</p>
-    </ul> -->
+
     <h1 id="ca">complexity analysis</h1>
     <h4 id="timeh"><u>Time &nbsp;complexity&nbsp;:</u></h4>
     <ul id="timec">
@@ -436,10 +540,8 @@
         <li>Average Case: O(n*n!)</li>
         <li>Best Case : O(n)(when array given is already sorted)</li>
     </ul>
-    <p id="aux"><b><u>Auxiliary &nbsp;Space:</u> O(1)</b></p>
+    <p id="aux"><b><u>Auxiliary &nbsp;Space:&nbsp;</u> O(1)</b></p>
 
-    <!-- <img src="C:\Users\Aryaman\Desktop36d81e8f020c2e3444180f2c18b8e363.gif" id="imj" style="display: none; height: 500px; width: 500px;"> -->
-    
 </body>
 
 </html>
