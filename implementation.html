@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -52,7 +52,7 @@
 
         #btn {
             margin-bottom: 0px;
-
+            display: inline-block;
         }
 
         h1 {
@@ -237,32 +237,35 @@
             margin-top: -5px;
         }
 
-    
-        @media screen and (max-width:800px){
+       
+
+        @media (min-width:600px) and (max-width:800px){
             h1 {
-                margin-left: 0px;
+                margin-left: 350px;
                 width: 350px;
-                font-size: 50px;
+                font-size: 30px;
             }
 
             h3 {
-                width: 290px;
-                margin-left: -50px;
+                width: 590px;
+                margin-left: 250px;
                 
             }
 
             .arar {
                
-                margin-left: -270px;
+                margin-left: 270px;
             }
 
             #txt {
-                width: 200px;
-                margin-left: -4px;
+                width: 300px;
+                margin-left: 400px;
             }
 
             #btn {
                 font-size: 20px;
+                margin-left: 500px;
+                margin-top: 30px;
             }
 
             h4 {
@@ -270,13 +273,13 @@
             }
 
             #another {
-                margin-left: 90px;
+                margin-left: 510px;
             }
 
             #ca {
                 font-size: 20px;
                 width: 250px;
-                margin-left: 10px;
+                margin-left: 430px;
             }
 
             #timeh {
@@ -285,11 +288,139 @@
 
             #timec {
                 margin-left: 5px;
-                width: 255px;
+                width: 555px;
             }
 
             #aux {
-                margin-top: 120px;
+                margin-top: 30px;
+                margin-left: 20px;
+            }
+        }
+
+        @media screen and (max-width:600px){
+            #txt{
+                width: 300px;
+            }
+            #btn{
+                margin-left: 500px;
+                margin-top: 30px;
+            }
+        }
+
+        @media screen and (max-width:446px){
+            h1 {
+                margin-left: 340px;
+                width: 250px;
+                font-size: 20px;
+            }
+
+            h3 {
+                width: 600px;
+                margin-left: 180px;
+                
+            }
+
+            .arar {
+               
+                margin-left: 270px;
+            }
+
+            #txt {
+                width: 400px;
+                margin-left: 260px;
+            }
+          
+            #btn {
+                font-size: 20px;
+                margin-left: 430px;
+                margin-top: 30px;
+            }
+
+            h4 {
+                margin-left: 30px;
+            }
+
+            #another {
+                margin-left: 410px;
+            }
+
+            #ca {
+                font-size: 20px;
+                width: 250px;
+                margin-left: 330px;
+            }
+
+            #timeh {
+                margin-left: 20px;
+            }
+
+            #timec {
+                margin-left: 5px;
+                width: 555px;
+            }
+
+            #aux {
+                margin-top: 30px;
+                margin-left: 20px;
+            }
+        } 
+
+        @media screen and (max-width:231px){
+            h1 {
+                margin-left: 240px;
+                width: 250px;
+                font-size: 20px;
+            }
+
+            h3 {
+                width: 550px;
+                margin-left: 80px;
+                
+            }
+
+            /* .arar {
+               
+                margin-left: 270px;
+            } */
+
+            #txt {
+                width: 350px;
+                margin-left: 170px;
+            }
+          
+            #btn {
+                font-size: 20px;
+                margin-left: 320px;
+            }
+
+            h4 {
+                margin-left: 30px;
+            }
+
+            #another {
+                margin-left: 320px;
+            }
+
+            #ca {
+                font-size: 20px;
+                width: 250px;
+                margin-left: 230px;
+            }
+            #sorting{
+                width: 250px;
+            }
+
+            #timeh {
+                margin-left: 20px;
+            }
+
+            #timec {
+                margin-left: 5px;
+                width: 555px;
+            }
+
+            #aux {
+                margin-top: 30px;
                 margin-left: 20px;
             }
         }
@@ -303,13 +434,15 @@
     </div>
 
     <center>
-        <h1>Implementation</h1>
+       <p> <h1>Implementation</h1> </p>
     </center>
-    <!-- <div class="arar"> -->
+   
     <h3>Input elements as array format separated by space</h3>
-    <!-- </div> -->
+    
+    <p>
     <input type="text" id="txt" maxlength="17">
     <button type="submit" id="btn" disabled="disabled">push</button><br>
+    </p>
     <h4><u>Array of elements&nbsp;:</u></h4>
     <ul id="lst">
         &nbsp;
@@ -532,7 +665,9 @@
 
     </ul>
 
-
+    <!-- <ul id="empty">
+         <p>Hello world</p>
+    </ul> -->
     <h1 id="ca">complexity analysis</h1>
     <h4 id="timeh"><u>Time &nbsp;complexity&nbsp;:</u></h4>
     <ul id="timec">
