@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        .loader {
+            position: fixed;
+            z-index: 99;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader>img {
+            width: 100%;
+        }
+
+        .loader.hidden {
+            animation: fadeOut 4.5s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeOut {
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #2c3e50;
+            height: 100vh;
+            width: 100vw;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: static
+        }
+
+
+        #btn {
+            margin-bottom: 0px;
+            display: inline-block;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            margin-top: 50px;
+            width: 300px;
+            display: block;
+            position: relative;
+            color: white;
+            margin-left: 0px;
+            margin-right: 70px;
+            background: #34495e;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+            border-radius: 8px;
+            font-size: 30px;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+        }
+
+        h1:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        h3 {
+            width: 700px;
+            margin-top: 40px;
+            text-align: center;
+            margin-left: 260px;
+            text-transform: uppercase;
+            word-spacing: 6px;
+            color: white;
+        }
+
+        #note {
+            color: white;
+            margin-left: 410px;
+            text-transform: uppercase;
+        }
+
+        #txt {
+            font-size: 25px;
+            border-radius: 10px 10px 10px 10px;
+            margin-left: 400px;
+            margin-top: 10px;
+        }
+
+        #btn {
+            font-size: 25px;
+            text-transform: uppercase;
+            background-color: #34495e;
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px 10px 10px 10px;
+            /* cursor: pointer; */
+
+        }
+
+        /* #btn:hover {
+            /* color: darkturquoise; */
+         
+
+        h4 {
+            color: white;
+            text-transform: uppercase;
+            margin-top: 60px;
+            margin-left: 90px;
+        }
+
+        ul {
+            /* border: 2px solid white; */
+            height: 100px;
+            margin-top: 10px;
+            position: sticky;
+            background-attachment: fixed;
+        }
+
+        #lst {
+            margin-left: 50px;
+            /* border: 2px solid white; */
+            position: sticky;
+            width: 1100px;
+        }
+
+        #another {
+            margin-top: -6px;
+            margin-left: 550px;
+            color: white;
+            text-align: center;
+            font-size: 22px;
+            text-transform: uppercase;
+            background-color: #34495e;
+            border: 2px solid white;
+            border-radius: 10px 10px 10px 10px;
+            /* cursor: pointer; */
+
+        }
+
+        /* #another:hover {
+            color: darkturquoise;
+        } */
+
+        #aftersort {
+
+            width: 1100px;
+            margin-left: 50px;
+            margin-top: -1px;
+        }
+
+        .empty {
+            margin-top: 1000px;
+            color: white;
+            position: fixed;
+            background-attachment: fixed;
+        }
+
+        #sorting {
+            margin-top: 20px;
+        }
+
+        #ca {
+            text-transform: uppercase;
+            /* margin-top: -50px; */
+            width: 300px;
+            height: 35px;
+            display: block;
+            position: relative;
+            color: white;
+            margin-left: 440px;
+            margin-right: 70px;
+            padding-left: 15px;
+            background: #34495e;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+            border-radius: 8px;
+            font-size: 26px;
+        }
+
+        #ca:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+        }
+
+        #ca:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        #timeh {
+            margin-top: 50px;
+        }
+
+        #timec {
+            color: white;
+            margin-left: 65px;
+            font-size: 20px;
+        }
+
+        #aux {
+            color: white;
+            font-size: 15px;
+            margin-left: 85px;
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+        
+        @media (min-width:700px) and (max-width:1000px){
+            h1{
+                margin-left: -100px;
+            }
+
+            h3{
+                width: 600px;
+                margin-left: 70px;
+            }
+            #txt{
+                width: 300px;
+                margin-left: 230px;
+            }
+            #btn{
+                margin-left: 350px;
+                margin-top: 20px;
+            }
+            #another{
+                margin-left: 360px;
+            }
+            #ca{
+                margin-left: 230px;
+            }
+            #timeh {
+                margin-left: 90px;
+            }
+
+            #timec {
+                margin-left: 70px;
+                width: 560px;
+            }
+
+            #aux {
+                margin-top: 30px;
+                margin-left: 90px;
+            }
+        }
+       
+        @media (min-width:600px) and (max-width:700px){
+            h1{
+                margin-left: 150px;
+            }
+
+            h3{
+                width: 600px;
+                margin-left: 70px;
+            }
+            #txt{
+                width: 300px;
+                margin-left: 230px;
+            }
+            #btn{
+                margin-left: 350px;
+                margin-top: 20px;
+            }
+            #another{
+                margin-left: 360px;
+            }
+            #ca{
+                margin-left: 230px;
+            }
+            #timeh {
+                margin-left: 90px;
+            }
+
+            #timec {
+                margin-left: 70px;
+                width: 560px;
+            }
+
+            #aux {
+                margin-top: 30px;
+                margin-left: 90px;
+            }
+
+        }
+
+        @media (min-width:500px) and (max-width:600px){
+            h1{
+                margin-left: 240px;
+            }
+
+            h3{
+                width: 600px;
+                margin-left: 70px;
+            }
+            #txt{
+                width: 300px;
+                margin-left: 230px;
+            }
+            #btn{
+                margin-left: 350px;
+                margin-top: 20px;
+            }
+            #another{
+                margin-left: 360px;
+            }
+            #ca{
+                margin-left: 230px;
+            }
+            #timeh {
+                margin-left: 90px;
+            }
+
+            #timec {
+                margin-left: 70px;
+                width: 560px;
+            }
+
+            #aux {
+                margin-top: 30px;
+                margin-left: 90px;
+            }
+        }
+        
+        @media (min-width:400px) and (max-width:500px){
+            h1{
+                margin-left: 250px;
+            }
+
+            h3{
+                width: 600px;
+                margin-left: 90px;
+            }
+            #txt{
+                width: 300px;
+                margin-left: 230px;
+            }
+            #btn{
+                margin-left: 350px;
+                margin-top: 20px;
+            }
+            #another{
+                margin-left: 360px;
+            }
+            #ca{
+                margin-left: 230px;
+            }
+            #timeh {
+                margin-left: 90px;
+            }
+
+            #timec {
+                margin-left: 70px;
+                width: 560px;
+            }
+
+            #aux {
+                margin-top: 30px;
+                margin-left: 90px;
+            }
+        }
+        
+        @media (min-width:300px) and (max-width:400px){
+            h1{
+                margin-left: 250px;
+            }
+
+            h3{
+                width: 600px;
+                margin-left: 90px;
+            }
+            #txt{
+                width: 300px;
+                margin-left: 230px;
+            }
+            #btn{
+                margin-left: 350px;
+                margin-top: 20px;
+            }
+            #another{
+                margin-left: 360px;
+            }
+            #ca{
+                margin-left: 230px;
+            }
+            #timeh {
+                margin-left: 90px;
+            }
+
+            #timec {
+                margin-left: 70px;
+                width: 560px;
+            }
+
+            #aux {
+                margin-top: 30px;
+                margin-left: 90px;
+            }
+        }
+
+        @media (min-width:200px) and (max-width:300px){
+            h1{
+                margin-left: 120px;
+            }
+
+            h3{
+                width: 500px;
+                margin-left: 7px;
+            }
+            #txt{
+                width: 400px;
+                margin-left: 60px;
+            }
+            #btn{
+                margin-left: 220px;
+                margin-top: 20px;
+            }
+            h4{
+                width: 400px;
+                margin-left: 50px;
+            }
+            #another{
+                margin-left: 220px;
+            }
+            #ca{
+                margin-left: 120px;
+            }
+            #timeh {
+                margin-left: 50px;
+            }
+
+            #timec {
+                margin-left: 30px;
+                width: 460px;
+            }
+
+            #aux {
+                margin-top: 60px;
+                margin-left: 50px;
+                width: 200px;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="loader hidden">
+        <img src="animated-unscreen.gif" alt="Loading...">
+    </div>
+
+    <center>
+       <p> <h1>Implementation</h1> </p>
+    </center>
+   
+    <h3>Input elements as array format separated by space</h3>
+    
+    <p>
+    <input type="text" id="txt" maxlength="17" placeholder="Enter the value..">
+    <button type="submit" id="btn" disabled="disabled">push</button><br>
+    </p>
+    <h4><u>Array of elements&nbsp;:</u></h4>
+    <ul id="lst">
+        &nbsp;
+    </ul>
+
+    <script>
+        $(document).ready(function () {
+
+            var items_arr;
+            var input;
+            $("#txt").keyup(function () {
+                var btnSubmit = $("#btn");
+                var btnSort = $("#another");
+                if ($(this).val().trim() != "") {
+                    btnSubmit.removeAttr("disabled");
+                    btnSort.removeAttr("disabled");
+                    btnSubmit.css({
+                        "cursor":"pointer"  
+                    })
+                    btnSort.css("cursor","pointer");
+
+                    btnSubmit.hover(function () {
+                            $(this).css("color", "darkturquoise");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+                    btnSort.hover(function () {
+                            $(this).css("color", "darkturquoise");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+
+                }
+                else {
+                    btnSubmit.attr("disabled", "disabled");
+                    
+                }
+            })
+
+            $("#btn").click(function () {
+                // document.querySelector("#btn").disabled = true;
+                // $("#btn").css({
+                //     "cursor": "auto",
+                //     "color": "grey"
+                // })
+
+                input = $("#txt").val();
+
+                items_arr = input.split(" "); //items is an array of values input from the text box
+
+                for (var i = 0; i <= items_arr.length - 1; i++) {
+
+                    if (input != "") {
+                        let divElement = document.createElement('div')
+
+                        // create text node
+                        let divElementText = document.createTextNode(items_arr[i] + " ");
+
+                        // append text node to div
+                        divElement.appendChild(divElementText)
+
+                        // append div element to document
+
+                        // document.body.appendChild(divElement);
+                        document.getElementById("lst").appendChild(divElement);
+
+                        $('div').css({
+                            "border": "2px solid white",
+                            "width": "30px",
+                            "float": "left",
+                            "margin-top": "20px",
+                            "height": "20px",
+                            "fontSize": "20px",
+                            "textAlign": "center",
+                            "paddingTop": "20px",
+                            "paddingBottom": "20px",
+                            "background": "#34495e",
+                            "boxShadow": "0 2px 3px 0 rgba(0,0,0,.1)",
+                            "borderRadius": "8px",
+                            "color": "white",
+
+                        })
+
+                        $('div').hover(function () {
+                            $(this).css("color", "#D70040");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+                    } // end of if check input != ""
+
+                    document.querySelector("#btn").disabled = true;
+                    $("#btn").css({
+                        "cursor": "auto",
+                        "color": "grey"
+                    })
+
+                }// end of for loop
+                // document.querySelector("#btn").disabled = true;
+                // $("#btn").css({
+                //     "cursor": "auto",
+                //     "color": "grey"
+                // })
+
+            })
+
+            //another button:
+
+            $('#another').click(function () {
+
+
+
+                document.querySelector("#another").disabled = true;
+                $("#another").css({
+                    "color": "grey",
+                    "cursor": "auto"
+                })
+
+
+                function isSorted(a, n) {
+                    for (var i = 1; i < a.length; i++)
+                        if (a[i - 1] > a[i])
+                            return false;
+                    return true;
+                }
+
+                //swap function
+                function swap(arr, xp, yp) {
+                    var temp = arr[xp];
+                    arr[xp] = arr[yp];
+                    arr[yp] = temp;
+                }
+
+                // To generate permutation of the array
+                function shuffle(a, n) {
+                    var i, j = n;
+                    for (i = 0; i < n; i++) {
+                        var ind = Math.floor(Math.random() * n);
+                        swap(a, j - i - 1, ind);
+                    }
+                    return a;
+                }
+
+                // Sorts array a[0..n-1] using Bogo sort
+                function bogosort(a, n) {
+                    // if array is not sorted then shuffle
+                    // the array again
+                    while (!isSorted(a, n)) {
+                        a = shuffle(a, n);
+                    }
+                    return a;
+                }
+
+                // prints the array
+                function printArray(arr, size) {
+                    var i;
+                    for (i = 0; i < size; i++) {
+                        //     document.write(arr[i] + " ");
+                        // document.write("\n");
+                        let divElement = document.createElement('div')
+
+                        // create text node
+                        let divElementText = document.createTextNode(arr[i] + " ");
+
+                        // append text node to div
+                        divElement.appendChild(divElementText)
+
+                        // append div element to document
+
+                        // document.body.appendChild(divElement);
+                        document.getElementById("aftersort").appendChild(divElement);
+
+                        $('div').css({
+                            "border": "2px solid white",
+                            "width": "30px",
+                            "float": "left",
+                            "margin-top": "20px",
+                            "height": "20px",
+                            "fontSize": "20px",
+                            "textAlign": "center",
+                            "paddingTop": "20px",
+                            "paddingBottom": "20px",
+                            "background": "#34495e",
+                            "boxShadow": "0 2px 3px 0 rgba(0,0,0,.1)",
+                            "borderRadius": "8px",
+                            "color": "white",
+
+                        })
+
+                        $('div').hover(function () {
+                            $(this).css("color", "#D70040");
+                        }, function () {
+                            $(this).css("color", "white");
+                        })
+
+                    }
+                }
+
+                var n = items_arr.length;
+                items_arr = bogosort(items_arr, n);
+                printArray(items_arr, n);
+            })
+            //the end
+
+        })
+    </script>
+
+    <!-- <script>
+         function progressBar(event){
+                    $("#file").css("visibilty","initial");
+                }
+    </script> -->
+
+    <button id="another" disabled="disabled">SORT</button>
+    <h4 id="sorting"><u>After sorting of array&nbsp;:</u></h4>
+    <ul id="aftersort">
+
+    </ul>
+
+    <!-- <ul id="empty">
+         <p>Hello world</p>
+    </ul> -->
+    <h1 id="ca">complexity analysis</h1>
+    <h4 id="timeh"><u>Time &nbsp;complexity&nbsp;:</u></h4>
+    <ul id="timec">
+        <li>Worst Case : O(∞) (since this algorithm has no upper bound)</li>
+        <li>Average Case: O(n*n!)</li>
+        <li>Best Case : O(n)(when array given is already sorted)</li>
+    </ul>
+    <p id="aux"><b><u>Auxiliary &nbsp;Space:&nbsp;</u> O(1)</b></p>
+
+</body>
+
+</html>
